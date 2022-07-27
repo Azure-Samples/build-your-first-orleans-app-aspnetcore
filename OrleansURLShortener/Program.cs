@@ -13,8 +13,6 @@ builder.Host.UseOrleans(siloBuilder =>
 
 var app = builder.Build();
 
-var grainFactory = app.Services.GetRequiredService<IGrainFactory>();
-
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/shorten/{*path}",
