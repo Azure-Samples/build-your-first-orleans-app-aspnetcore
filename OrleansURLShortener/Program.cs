@@ -13,33 +13,32 @@ builder.Host.UseOrleans(siloBuilder =>
 
 var app = builder.Build();
 
-var grainFactory = app.Services.GetRequiredService<IGrainFactory>();
-
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/shorten/{*path}", async (HttpContext context, string path) =>
-{
-    var shortenedRouteSegment = Guid.NewGuid().GetHashCode().ToString("X");
-    var shortenerGrain = grainFactory.GetGrain<IUrlShortenerGrain>(shortenedRouteSegment);
-    await shortenerGrain.SetUrl(shortenedRouteSegment, path);
-    var resultBuilder = new UriBuilder(context.Request.GetEncodedUrl())
+app.MapGet("/shorten/{*path}",
+    async (IGrainFactory grains, HttpRequest request, string path) =>
     {
-        Path = $"/go/{shortenedRouteSegment}"
-    };
+        var shortenedRouteSegment = Guid.NewGuid().GetHashCode().ToString("X");
+        var shortenerGrain = grains.GetGrain<IUrlShortenerGrain>(shortenedRouteSegment);
+        await shortenerGrain.SetUrl(shortenedRouteSegment, path);
+        var resultBuilder = new UriBuilder(request.GetEncodedUrl())
+        {
+            Path = $"/go/{shortenedRouteSegment}"
+        };
 
-    return Results.Ok(resultBuilder.Uri);
-});
+        return Results.Ok(resultBuilder.Uri);
+    });
 
-app.MapGet("/go/{shortenedRouteSegment}", async (string shortenedRouteSegment) =>
-{
-    var shortenerGrain = grainFactory.GetGrain<IUrlShortenerGrain>(shortenedRouteSegment);
-    var url = await shortenerGrain.GetUrl();
+app.MapGet("/go/{shortenedRouteSegment}",
+    async (IGrainFactory grains, string shortenedRouteSegment) =>
+    {
+        var shortenerGrain = grains.GetGrain<IUrlShortenerGrain>(shortenedRouteSegment);
+        var url = await shortenerGrain.GetUrl();
 
-    return url is not null ? Results.Redirect(url) : Results.NotFound();
-});
+        return Results.Redirect(url);
+    });
 
 app.Run();
-
 
 public class UrlShortenerGrain : Grain, IUrlShortenerGrain
 {
