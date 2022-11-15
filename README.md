@@ -1,6 +1,6 @@
-# Build your first Orleans app using ASP.NET Core 6.0
+# Build your first Orleans app using ASP.NET Core 7.0
 
-This repository contains the sample project for the Microsoft Learn module [Build your first Orleans app using ASP.NET Core 6.0](https://docs.microsoft.com/en-us/learn/modules/orleans-build-your-first-app/3-exercise-setting-up-project). The app demonstrates basic Orleans concepts, such as working with Grains, Silos and persistent state. These concepts are used to build a simple URL shortener utility app. The project also shows how to integrate these features with a basic web service using a Minimal API.
+This repository contains the sample project for the Microsoft Learn module [Build your first Orleans app using ASP.NET Core 7.0](https://docs.microsoft.com/en-us/learn/modules/orleans-build-your-first-app/3-exercise-setting-up-project). The app demonstrates basic Orleans concepts, such as working with Grains, Silos and persistent state. These concepts are used to build a simple URL shortener utility app. The project also shows how to integrate these features with a basic web service using a Minimal API.
 
 ## Features
 
@@ -12,7 +12,7 @@ This repository contains the sample project for the Microsoft Learn module [Buil
 
 ### Prerequisites
 
-- [.NET 6.0](http://dotnet.microsoft.com)
+- [.NET 7.0](http://dotnet.microsoft.com)
 
 ### Quickstart
 
