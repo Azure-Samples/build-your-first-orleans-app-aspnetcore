@@ -9,9 +9,9 @@ builder.Host.UseOrleans(siloBuilder =>
     siloBuilder.UseLocalhostClustering();
     siloBuilder.AddMemoryGrainStorage("urls");
 });
-// </Configuration>
 
 var app = builder.Build();
+// </Configuration>
 
 // <Endpoints>
 app.MapGet("/", () => "Hello World!");
