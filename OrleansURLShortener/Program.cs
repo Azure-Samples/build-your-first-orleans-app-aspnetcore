@@ -14,7 +14,7 @@ var app = builder.Build();
 // </Configuration>
 
 // <Endpoints>
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Welcome to the URL shortener, powered by Orleans!");
 
 app.MapGet("/shorten",
     async (IGrainFactory grains, HttpRequest request, string redirect) =>
