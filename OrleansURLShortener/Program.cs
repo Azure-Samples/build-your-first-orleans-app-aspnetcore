@@ -85,7 +85,8 @@ public class UrlShortenerGrain : Grain, IUrlShortenerGrain
 [GenerateSerializer]
 public record UrlDetails
 {
-    public string FullUrl { get; set; }
-    public string ShortenedRouteSegment { get; set; }
+    public string FullUrl { get; set; } = String.Empty;
+    
+    public string ShortenedRouteSegment { get; set; } = String.Empty;
 }
 // </Grain>
