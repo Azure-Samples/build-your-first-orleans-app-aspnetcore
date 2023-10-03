@@ -17,14 +17,14 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/shorten",
-    async (IGrainFactory grains, HttpRequest request, string redirect) =>
+    async (IGrainFactory grains, HttpRequest request, string url) =>
     {
         // Create a unique, short ID
         var shortenedRouteSegment = Guid.NewGuid().GetHashCode().ToString("X");
 
         // Create and persist a grain with the shortened ID and full URL
         var shortenerGrain = grains.GetGrain<IUrlShortenerGrain>(shortenedRouteSegment);
-        await shortenerGrain.SetUrl(redirect);
+        await shortenerGrain.SetUrl(url);
 
         // Return the shortened URL for later use
         var resultBuilder = new UriBuilder($"{request.Scheme}://{request.Host.Value}")
