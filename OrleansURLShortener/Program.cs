@@ -1,5 +1,4 @@
 // <Configuration>
-using Microsoft.AspNetCore.Http.Extensions;
 using Orleans.Runtime;
 
 var builder = WebApplication.CreateBuilder();
@@ -9,12 +8,12 @@ builder.Host.UseOrleans(siloBuilder =>
     siloBuilder.UseLocalhostClustering();
     siloBuilder.AddMemoryGrainStorage("urls");
 });
-// </Configuration>
 
 var app = builder.Build();
+// </Configuration>
 
 // <Endpoints>
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Welcome to the URL shortener, powered by Orleans!");
 
 app.MapGet("/shorten",
     async (IGrainFactory grains, HttpRequest request, string url) =>
@@ -85,7 +84,8 @@ public class UrlShortenerGrain : Grain, IUrlShortenerGrain
 [GenerateSerializer]
 public record UrlDetails
 {
-    public string FullUrl { get; set; }
-    public string ShortenedRouteSegment { get; set; }
+    public string FullUrl { get; set; } = String.Empty;
+    
+    public string ShortenedRouteSegment { get; set; } = String.Empty;
 }
 // </Grain>
