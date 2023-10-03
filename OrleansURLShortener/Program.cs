@@ -1,5 +1,4 @@
 // <Configuration>
-using Microsoft.AspNetCore.Http.Extensions;
 using Orleans.Runtime;
 
 var builder = WebApplication.CreateBuilder();
