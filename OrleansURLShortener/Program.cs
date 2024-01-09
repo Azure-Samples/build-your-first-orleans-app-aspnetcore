@@ -3,7 +3,7 @@ using Orleans.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseOrleans(siloBuilder =>
+builder.Host.UseOrleans(static siloBuilder =>
 {
     siloBuilder.UseLocalhostClustering();
     siloBuilder.AddMemoryGrainStorage("urls");
@@ -98,7 +98,7 @@ public sealed class UrlShortenerGrain(
         Task.FromResult(state.State.FullUrl);
 }
 
-[GenerateSerializer]
+[GenerateSerializer, Alias(nameof(UrlDetails))]
 public sealed record class UrlDetails
 {
     [Id(0)]
