@@ -1,6 +1,6 @@
-# Build your first Orleans app using ASP.NET Core 7.0
+# Build your first Orleans app using ASP.NET Core 8.0
 
-This repository contains the sample project for the Microsoft Learn module [Build your first Orleans app using ASP.NET Core 7.0](https://docs.microsoft.com/en-us/learn/modules/orleans-build-your-first-app/3-exercise-setting-up-project). The app demonstrates basic Orleans concepts, such as working with Grains, Silos and persistent state. These concepts are used to build a simple URL shortener utility app. The project also shows how to integrate these features with a basic web service using a Minimal API.
+This repository contains the sample project for the Microsoft Learn module [Build your first Orleans app using ASP.NET Core 8.0](https://learn.microsoft.com/training/modules/orleans-build-your-first-app). The app demonstrates basic Orleans concepts, such as working with Grains, Silos and persistent state. These concepts are used to build a simple URL shortener utility app. The project also shows how to integrate these features with a basic web service using a Minimal API.
 
 ## Features
 
@@ -12,7 +12,7 @@ This repository contains the sample project for the Microsoft Learn module [Buil
 
 ### Prerequisites
 
-- [.NET 7.0](http://dotnet.microsoft.com)
+- [.NET 8.0](http://dotnet.microsoft.com)
 
 ### Quickstart
 
@@ -20,3 +20,5 @@ This repository contains the sample project for the Microsoft Learn module [Buil
 1. Run the command `cd build-your-first-orleans-app-aspnetcore/OrleansURLShortener` to navigate down into the correct project folder.
 1. Run the command `dotnet run` from your editor or terminal. The app should build and launch in the browser, and then display a `Hello World` message to verify it is working correctly.
 1. Open the project in your preferred editor to begin modifying the project. There are two other existing endpoints at `/shorten` and `/go` to create and use redirects.
+
+Call the `/shorten` endpoint with a `url` query string for the URL you'd like to get a shortened version of. For example, `https://localhost:5001/shorten?url=https://www.microsoft.com` will return a shortened URL. You can then call the `/go` endpoint with the shortened URL to be redirected to the original URL.
